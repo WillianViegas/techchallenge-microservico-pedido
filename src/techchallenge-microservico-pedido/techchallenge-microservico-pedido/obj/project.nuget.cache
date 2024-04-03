@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "rduCsarRL/lkCi/QFFeFccbWi5Ir/hRFaaAv01j/GQXCtjKZgXE7wnlFNezB2DczVIDu5SrEz7bElkZ7v3lJLA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\USER\\source\\repos\\techchallenge-microservico-pedido\\src\\techchallenge-microservico-pedido\\techchallenge-microservico-pedido\\techchallenge-microservico-pedido.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\USER\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.4\\microsoft.visualstudio.azure.containers.tools.targets.1.19.4.nupkg.sha512"
+  ],
+  "logs": []
+}
