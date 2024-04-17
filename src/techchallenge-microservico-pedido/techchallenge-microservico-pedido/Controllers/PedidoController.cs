@@ -59,7 +59,7 @@ namespace techchallenge_microservico_pedido.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost("/createPedido")]
         public async Task<IResult> CreatePedido([FromBody] Pedido pedidoInput )
         {
             try

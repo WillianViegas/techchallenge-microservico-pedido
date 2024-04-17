@@ -33,7 +33,8 @@ namespace techchallenge_microservico_pedido.Services
                     DataCriacao = DateTime.Now,
                     Numero = numeroPedido.Count + 1,
                     Usuario = carrinho.Usuario,
-                    IdCarrinho = carrinho.Id
+                    IdCarrinho = carrinho.Id,
+                    Pagamento = new Pagamento() 
                 };
 
                 await _pedidoRepository.CreatePedido(pedido);
