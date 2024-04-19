@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "techchallenge-microservico-pedido", "techchallenge-microservico-pedido\techchallenge-microservico-pedido.csproj", "{B9528485-FBDD-49D0-BCEB-ED21EAD5DA00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "techchallenge-microservico-pedido", "techchallenge-microservico-pedido\techchallenge-microservico-pedido.csproj", "{B9528485-FBDD-49D0-BCEB-ED21EAD5DA00}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{ACFD6E7F-0AE6-47F1-9EDE-DE3B7AAF5EBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "techchallenge-microservico-pedido-test", "techchallenge-microservico-pedido-test\techchallenge-microservico-pedido-test.csproj", "{137F5FC0-8FAD-472C-AD35-F0B93910A8F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +19,16 @@ Global
 		{B9528485-FBDD-49D0-BCEB-ED21EAD5DA00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9528485-FBDD-49D0-BCEB-ED21EAD5DA00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9528485-FBDD-49D0-BCEB-ED21EAD5DA00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{137F5FC0-8FAD-472C-AD35-F0B93910A8F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{137F5FC0-8FAD-472C-AD35-F0B93910A8F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{137F5FC0-8FAD-472C-AD35-F0B93910A8F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{137F5FC0-8FAD-472C-AD35-F0B93910A8F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{137F5FC0-8FAD-472C-AD35-F0B93910A8F9} = {ACFD6E7F-0AE6-47F1-9EDE-DE3B7AAF5EBB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7EEDDC01-705B-4753-9DEC-A8C651D1E0C4}
