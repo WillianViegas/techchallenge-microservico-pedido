@@ -2,7 +2,6 @@
 using techchallenge_microservico_pedido.DatabaseConfig;
 using techchallenge_microservico_pedido.Models;
 using techchallenge_microservico_pedido.Repositories.Interfaces;
-using techchallenge_microservico_pedido.Services.Interfaces;
 
 namespace techchallenge_microservico_pedido.Repositories
 {

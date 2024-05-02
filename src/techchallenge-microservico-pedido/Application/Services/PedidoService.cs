@@ -1,4 +1,4 @@
-﻿using techchallenge_microservico_pedido.Controllers;
+﻿using Microsoft.Extensions.Logging;
 using techchallenge_microservico_pedido.Models;
 using techchallenge_microservico_pedido.Repositories.Interfaces;
 using techchallenge_microservico_pedido.Services.Interfaces;

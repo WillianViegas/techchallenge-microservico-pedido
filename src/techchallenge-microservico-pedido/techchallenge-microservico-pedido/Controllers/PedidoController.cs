@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 using techchallenge_microservico_pedido.Models;
 using techchallenge_microservico_pedido.Services.Interfaces;
 
@@ -34,8 +35,14 @@ namespace techchallenge_microservico_pedido.Controllers
             }
         }
 
-
         [HttpPost("/fromCarrinho")]
+        [ProducesResponseType(typeof(IEnumerable<Pedido>), 201)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+        [SwaggerOperation(
+        Summary = "Criar pedido a partir do carrinho",
+        Description = "Cria um novo pedido utilizando o id de um carrinho")]
         public async Task<IResult> CreatePedidoFromCarrinho(string idCarrinho)
         {
             try
@@ -60,6 +67,13 @@ namespace techchallenge_microservico_pedido.Controllers
         }
 
         [HttpPost("/createPedido")]
+        [ProducesResponseType(typeof(IEnumerable<Pedido>), 201)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+        [SwaggerOperation(
+        Summary = "Criar pedido",
+        Description = "Cria um novo pedido")]
         public async Task<IResult> CreatePedido([FromBody] Pedido pedidoInput )
         {
             try
