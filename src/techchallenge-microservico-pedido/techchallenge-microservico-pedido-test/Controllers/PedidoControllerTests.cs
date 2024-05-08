@@ -1,12 +1,15 @@
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.Extensions.Logging;
 using Moq;
+using techchallenge_microservico_pedido.Controllers;
 using techchallenge_microservico_pedido.Enums;
 using techchallenge_microservico_pedido.Models;
+using techchallenge_microservico_pedido.Services;
 using techchallenge_microservico_pedido.Services.Interfaces;
 
-namespace techchallenge_microservico_pedido_test
+namespace techchallenge_microservico_pedido_test.Controllers
 {
-    public class PedidoTests
+    public class PedidoServiceTests
     {
         [Fact]
         public async Task CreatePedidoFromCarrinho()
@@ -18,12 +21,22 @@ namespace techchallenge_microservico_pedido_test
             var carrinhoService = new Mock<ICarrinhoService>().Object;
             var pedidoService = new Mock<IPedidoService>().Object;
 
+            Mock.Get(carrinhoService)
+                .Setup(service => service.GetCarrinhoById(carrinho.Id))
+                .ReturnsAsync(carrinho);
+
             Mock.Get(pedidoService)
-                .Setup(service => service.CreatePedidoFromCarrinho(It.IsAny<Carrinho>()))
+                .Setup(service => service.CreatePedidoFromCarrinho(carrinho))
                 .ReturnsAsync(pedido);
 
+
+            var mock = new Mock<ILogger<PedidoController>>();
+            ILogger<PedidoController> logger = mock.Object;
+
+            var controller = new PedidoController(logger, pedidoService, carrinhoService);
+
             //act
-            var result = await pedidoService.CreatePedidoFromCarrinho(carrinho);
+            var result = await controller.CreatePedidoFromCarrinho(carrinho.Id);
 
             //assert
             Assert.NotNull(result);
@@ -35,10 +48,17 @@ namespace techchallenge_microservico_pedido_test
             //arrange
             var pedido = GetPedidoObj();
             var pedidoService = new Mock<IPedidoService>().Object;
+            var carrinhoService = new Mock<ICarrinhoService>().Object;
 
             Mock.Get(pedidoService)
                 .Setup(service => service.CreatePedido(It.IsAny<Pedido>()))
                 .ReturnsAsync(pedido);
+
+
+            var mock = new Mock<ILogger<PedidoController>>();
+            ILogger<PedidoController> logger = mock.Object;
+
+            var controller = new PedidoController(logger, pedidoService, carrinhoService);
 
             //act
             var result = await pedidoService.CreatePedido(pedido);
@@ -91,7 +111,7 @@ namespace techchallenge_microservico_pedido_test
 
             var carrinho = new Carrinho()
             {
-                Id = "",
+                Id = Guid.NewGuid().ToString(),
                 Usuario = null,
                 Ativo = true,
                 Produtos = produtos,
