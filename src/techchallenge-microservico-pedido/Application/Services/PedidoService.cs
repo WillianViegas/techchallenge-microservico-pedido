@@ -105,7 +105,7 @@ namespace techchallenge_microservico_pedido.Services
                 await _pedidoRepository.CreatePedido(novoPedido);
 
 
-                var messageJson = Newtonsoft.Json.JsonConvert.SerializeObject(pedido);
+                var messageJson = Newtonsoft.Json.JsonConvert.SerializeObject(novoPedido);
                 await EnviarMessageSQS(messageJson);
 
                 return novoPedido;
