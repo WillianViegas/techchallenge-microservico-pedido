@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Amazon.S3;
+using Amazon.SQS;
+using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using techchallenge_microservico_pedido.Models;
 using techchallenge_microservico_pedido.Services.Interfaces;

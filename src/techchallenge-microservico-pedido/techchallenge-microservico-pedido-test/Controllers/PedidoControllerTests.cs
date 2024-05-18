@@ -1,3 +1,5 @@
+using Amazon.S3;
+using Amazon.SQS;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.Extensions.Logging;
 using Moq;
