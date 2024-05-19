@@ -15,7 +15,7 @@ services:
       DatabaseConfig__ConnectionString: 'mongodb://admin:abc123!@mongodb-ms-pedido:27017'
       DatabaseConfig__DatabaseName: 'ms-pedido-db'
       DatabaseConfig__User: 'admin'
-      DatabaseConfig__QueueUrl: ''
+      QueueUrl: ''
       LocalStack__Config__LocalStackHost: 'localstack'
       DatabaseConfig__Password: 'abc123!'
       AWS_ACCESS_KEY_ID: ''
