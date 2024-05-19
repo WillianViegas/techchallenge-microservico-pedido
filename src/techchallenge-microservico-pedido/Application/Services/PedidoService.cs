@@ -125,7 +125,7 @@ namespace techchallenge_microservico_pedido.Services
                 var sqsConfiguration = new SQSConfiguration();
                 _sqs = await sqsConfiguration.ConfigurarSQS();
 
-                await sqsConfiguration.EnviarParaSQS(messageJson, _sqs);
+                await sqsConfiguration.EnviarParaSQS(messageJson, _sqs, _queueUrl);
             }
             else
             {
