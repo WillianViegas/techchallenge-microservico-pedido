@@ -46,8 +46,10 @@ jobs:
         cd src
         cd techchallenge-microservico-pedido
         docker build -t ms-pedido-img:latest -f techchallenge-microservico-pedido/Dockerfile .
-        docker tag ms-pedido-img:latest ${{ secrets.DOCKER_HUB_URL }}:ms-pedido-img
-        docker push ${{ secrets.DOCKER_HUB_URL }}:ms-pedido-img
+        docker tag ms-pedido-img:latest ${{ secrets.AWS_REGISTRY_URL }}:ms-pedido-img
+        docker push ${{ secrets.AWS_REGISTRY_URL }}:ms-pedido-img
+      # docker tag ms-pedido-img:latest ${{ secrets.DOCKER_HUB_URL }}:ms-pedido-img
+      # docker push ${{ secrets.DOCKER_HUB_URL }}:ms-pedido-img
 
 
   override-configmap:
@@ -80,5 +82,4 @@ jobs:
             cd techchallenge-microservico-pedido
             aws eks --region ${{ secrets.AWS_REGION }} update-kubeconfig --name ${{ secrets.EKS_CLUSTER_NAME }}
             kubectl apply -f ./k8s/
-            docker tag ms-pedido-img:latest ${{ secrets.AWS_REGISTRY_URL }}:ms-pedido-img
-            docker push ${{ secrets.AWS_REGISTRY_URL }}:ms-pedido-img
+            
