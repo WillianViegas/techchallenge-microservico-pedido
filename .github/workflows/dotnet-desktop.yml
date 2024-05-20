@@ -62,6 +62,14 @@ jobs:
       AWS_REGISTRY_URL: ${{ secrets.AWS_REGISTRY_URL }}
       DOCKER_HUB_URL: ${{ secrets.DOCKER_HUB_URL }}
 
+      run: |
+       echo "QUEUE_URL=${secrets.QUEUE_URL}" >> $GITHUB_ENV
+       echo "AWS_ACCESS_KEY_ID=${secrets.AWS_ACCESS_KEY_ID}" >> $GITHUB_ENV
+       echo "AWS_SECRET_ACCESS_KEY=${secrets.AWS_SECRET_ACCESS_KEY}" >> $GITHUB_ENV
+       echo "MY_SECRET=${secrets.MY_SECRET}" >> $GITHUB_ENV
+       echo "AWS_REGISTRY_URL=${secrets.AWS_REGISTRY_URL}" >> $GITHUB_ENV
+       echo "DOCKER_HUB_URL=${secrets.DOCKER_HUB_URL}" >> $GITHUB_ENV
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
