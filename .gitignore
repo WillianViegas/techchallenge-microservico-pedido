@@ -399,3 +399,5 @@ FodyWeavers.xsd
 
 #Random
 *.suo
+
+providers/
