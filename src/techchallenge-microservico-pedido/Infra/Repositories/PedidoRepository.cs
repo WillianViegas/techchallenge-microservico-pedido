@@ -23,6 +23,11 @@ namespace techchallenge_microservico_pedido.Repositories
             return pedido;
         }
 
+        public async Task DeletePedido(string pedidoId)
+        {
+            await _collection.DeleteOneAsync(x => x.Id == pedidoId);
+        }
+
         public async Task<IList<Pedido>> GetAllPedidos()
         {
             return await _collection.Find(_ => true).ToListAsync();

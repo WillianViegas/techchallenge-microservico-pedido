@@ -24,8 +24,8 @@ namespace techchallenge_microservico_pedido.Services
         private readonly bool _enviarMensagem;
         private readonly string _queueName;
         private readonly string _bucketName;
-        private  IAmazonSQS _amazonSQS;
-        private  IAmazonS3 _amazonS3;
+        private IAmazonSQS _amazonSQS;
+        private IAmazonS3 _amazonS3;
 
         public PedidoService(ILogger<PedidoService> logger, IPedidoRepository pedidoRepository, IConfiguration config, IAmazonS3 s3, IAmazonSQS sqs)
         {
@@ -54,21 +54,19 @@ namespace techchallenge_microservico_pedido.Services
 
         public async Task<Pedido> CreatePedidoFromCarrinho(Carrinho carrinho)
         {
+            var pedido = new Pedido();
+
             try
             {
                 var numeroPedido = await _pedidoRepository.GetAllPedidos();
 
-                var pedido = new Pedido
-                {
-                    Produtos = carrinho.Produtos,
-                    Total = carrinho.Total,
-                    Status = 0,
-                    DataCriacao = DateTime.Now,
-                    Numero = numeroPedido.Count + 1,
-                    Usuario = carrinho.Usuario,
-                    IdCarrinho = carrinho.Id,
-                    Pagamento = new Pagamento() 
-                };
+                pedido.Produtos = carrinho.Produtos;
+                pedido.Total = carrinho.Produtos.Sum(x => x.Preco);
+                pedido.Status = 0;
+                pedido.DataCriacao = DateTime.Now;
+                pedido.Numero = numeroPedido.Count + 1;
+                pedido.Usuario = carrinho.Usuario;
+                pedido.IdCarrinho = carrinho.Id;
 
                 await _pedidoRepository.CreatePedido(pedido);
 
@@ -80,6 +78,9 @@ namespace techchallenge_microservico_pedido.Services
             }
             catch (Exception ex)
             {
+                if (pedido.Id != null)
+                    await _pedidoRepository.DeletePedido(pedido.Id);
+
                 _logger.LogError(ex.Message);
                 throw new Exception(ex.Message);
             }
@@ -87,20 +88,19 @@ namespace techchallenge_microservico_pedido.Services
 
         public async Task<Pedido> CreatePedido(Pedido pedido)
         {
+            var novoPedido = new Pedido();
+
             try
             {
                 var numeroPedido = await _pedidoRepository.GetAllPedidos();
 
-                var novoPedido = new Pedido
-                {
-                    Produtos = pedido.Produtos,
-                    Total = pedido.Produtos.Sum(x => x.Preco),
-                    Status = 0,
-                    DataCriacao = DateTime.Now,
-                    Numero = numeroPedido.Count + 1,
-                    Usuario = pedido.Usuario,
-                    IdCarrinho = pedido.IdCarrinho
-                };
+                novoPedido.Produtos = pedido.Produtos;
+                novoPedido.Total = pedido.Produtos.Sum(x => x.Preco);
+                novoPedido.Status = 0;
+                novoPedido.DataCriacao = DateTime.Now;
+                novoPedido.Numero = numeroPedido.Count + 1;
+                novoPedido.Usuario = pedido.Usuario;
+                novoPedido.IdCarrinho = pedido.IdCarrinho;
 
                 await _pedidoRepository.CreatePedido(novoPedido);
 
@@ -112,6 +112,9 @@ namespace techchallenge_microservico_pedido.Services
             }
             catch (Exception ex)
             {
+                if (novoPedido.Id != null)
+                    await _pedidoRepository.DeletePedido(novoPedido.Id);
+
                 _logger.LogError(ex.Message);
                 throw new Exception(ex.Message);
             }
@@ -161,7 +164,7 @@ namespace techchallenge_microservico_pedido.Services
             if (responseQueue.HttpStatusCode != HttpStatusCode.OK)
             {
                 var erro = $"Failed to CreateQueue for queue {_queueName}. Response: {responseQueue.HttpStatusCode}";
-                //log.LogError(erro);
+                _logger.LogError(erro);
                 throw new AmazonSQSException(erro);
             }
         }
