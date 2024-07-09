@@ -53,7 +53,7 @@ namespace Infra.SQS
             }
             catch
             {
-                //logar
+                throw;
             }
           
         }
