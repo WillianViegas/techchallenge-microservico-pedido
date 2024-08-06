@@ -59,5 +59,6 @@ para finalizar `docker-compose stop`
 
 Lembrando que se você for rodar pelo visual studio fica bem mais simplificado, basta estar com o docker desktop aberto na máquina e escolher a opção abaixo:
 
-![image](https://github.com/user-attachments/assets/5c29e590-a38d-4090-8d2a-6e745e583f46)
+![image](https://github.com/user-attachments/assets/f186756a-0ab0-45c7-860a-9517f305af84)
+
 
