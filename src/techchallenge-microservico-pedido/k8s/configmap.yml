@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: my-config
+  name: my-config-pedido
 data:
   DatabaseConfig__ConnectionString: 'mongodb://admin:abc123!@mongodb-ms-pedido:27017'
   DatabaseConfig__DatabaseName: 'ms-pedido-db'
