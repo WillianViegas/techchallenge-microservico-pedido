@@ -63,6 +63,7 @@ namespace techchallenge_microservico_pedido.Controllers
             catch (Exception ex)
             {
                 var erro = $"Erro ao criar pedido a partir do carrinho. IdCarrinho: {idCarrinho}";
+                Console.WriteLine(ex.Message);
                 _logger.LogError(erro, ex);
                 return TypedResults.Problem(erro);
             }
@@ -86,6 +87,7 @@ namespace techchallenge_microservico_pedido.Controllers
             catch (Exception ex)
             {
                 var erro = $"Erro ao criar o pedido.";
+                Console.WriteLine(ex.Message);
                 _logger.LogError(erro, ex);
                 return TypedResults.Problem(erro);
             }
