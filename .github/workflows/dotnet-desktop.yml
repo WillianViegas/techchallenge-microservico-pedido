@@ -112,9 +112,6 @@ jobs:
           --from-literal=MONGO_INITDB_DATABASE=${{ steps.set-configmap-variables.outputs.mongo_initdb_database }} \
           --from-literal=MONGO_INITDB_ROOT_USERNAME=${{ steps.set-configmap-variables.outputs.mongo_initdb_root_username }} \
           --from-literal=MONGO_INITDB_ROOT_PASSWORD=${{ steps.set-configmap-variables.outputs.mongo_initdb_root_password }} \
-          --from-literal=MY_SECRET=${{ steps.set-configmap-variables.outputs.my_secret}} \
-          --from-literal=QueueUrl=${{ steps.set-configmap-variables.outputs.queue_url}} \
-          --from-literal=SERVICES=${{ steps.set-configmap-variables.outputs.services}} \
           --dry-run=client -o yaml | kubectl apply -f -
 
     - name: Deploy to EKS
