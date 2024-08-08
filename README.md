@@ -77,7 +77,7 @@ ex:
 ![image](https://github.com/user-attachments/assets/b336de8e-8774-4025-a8d3-256dc47317f8)
 
 Caso esteja tendo dificuldades para acessar a respectiva porta você pode utilizar esse comando localmente para gerar um acesso em uma porta de sua escolha, basta abrir o cmd e executar:
-`kubectl port-forward deployment/hackamed 7003:80 7004:443`
+`kubectl port-forward deployment/{nomeDeployment} 7003:80 7004:443`
 
 Para finalizar os pods e os deploys você pode executar o seguinte comando:
 `kubectl delete -f .`  (serão deletadas todas as configurações dos arquivos iniciados, finalizando assim os pods)
