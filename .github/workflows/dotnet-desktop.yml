@@ -68,7 +68,6 @@ jobs:
         echo "::set-output name=aws_access_key_id::${{ secrets.AWS_ACCESS_KEY_ID }}"
         echo "::set-output name=aws_secret_access_key::${{ secrets.AWS_SECRET_ACCESS_KEY }}"
         echo "::set-output name=aws_region::${{ secrets.AWS_REGION }}"
-        echo "::set-output name=MY_SECRET: ''"
         echo "::set-output name=db_connection_string::${{ secrets.DB_CONNECTION_STRING }}"
         echo "::set-output name=db_database_name::${{ secrets.DB_DATABASE_NAME }}"
         echo "::set-output name=db_user::${{ secrets.DB_USER }}"
@@ -83,6 +82,7 @@ jobs:
         echo "::set-output name=mongo_initdb_database::${{ secrets.MONGO_INITDB_DATABASE }}"
         echo "::set-output name=mongo_initdb_root_username::${{ secrets.MONGO_INITDB_ROOT_USERNAME }}"
         echo "::set-output name=mongo_initdb_root_password::${{ secrets.MONGO_INITDB_ROOT_PASSWORD }}"
+        echo "::set-output name=MY_SECRET: ${{ secrets.MY_SECRET }}
 
     - name: Setup kubectl
       uses: azure/setup-kubectl@v3
