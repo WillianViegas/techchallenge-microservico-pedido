@@ -71,18 +71,17 @@ jobs:
         echo "::set-output name=db_connection_string::${{ secrets.DB_CONNECTION_STRING }}"
         echo "::set-output name=db_database_name::${{ secrets.DB_DATABASE_NAME }}"
         echo "::set-output name=db_user::${{ secrets.DB_USER }}"
-        echo "::set-output name=SERVICES::${{ secrets.SERVICES }}"
-        echo "::set-output name=QueueUrl::${{ secrets.QUEUE_URL }}"
-        echo "::set-output name=LocalStack__UseLocalStack::false"
-        echo "::set-output name=SQSConfig__UseLocalStack::false"
-        echo "::set-output name=SQSConfig__CreateTestQueue::false"
-        echo "::set-output name=SQSConfig__SendTestMessage::false"
+        echo "::set-output name=services::${{ secrets.SERVICES }}"
+        echo "::set-output name=queue_url::${{ secrets.QUEUE_URL }}"
+        echo "::set-output name=use_local_stack::false"
+        echo "::set-output name=create_test_queue::false"
+        echo "::set-output name=send_test_message::false"
         echo "::set-output name=AWS_DEFAULT_REGION::${{ secrets.AWS_REGION }}"
         echo "::set-output name=db_password::${{ secrets.DB_PASSWORD }}"
         echo "::set-output name=mongo_initdb_database::${{ secrets.MONGO_INITDB_DATABASE }}"
         echo "::set-output name=mongo_initdb_root_username::${{ secrets.MONGO_INITDB_ROOT_USERNAME }}"
         echo "::set-output name=mongo_initdb_root_password::${{ secrets.MONGO_INITDB_ROOT_PASSWORD }}"
-        echo "::set-output name=MY_SECRET::${{ secrets.MY_SECRET }}"
+        echo "::set-output name=my_secret::${{ secrets.MY_SECRET }}"
 
     - name: Setup kubectl
       uses: azure/setup-kubectl@v3
@@ -112,6 +111,13 @@ jobs:
           --from-literal=MONGO_INITDB_DATABASE=${{ steps.set-configmap-variables.outputs.mongo_initdb_database }} \
           --from-literal=MONGO_INITDB_ROOT_USERNAME=${{ steps.set-configmap-variables.outputs.mongo_initdb_root_username }} \
           --from-literal=MONGO_INITDB_ROOT_PASSWORD=${{ steps.set-configmap-variables.outputs.mongo_initdb_root_password }} \
+          --from-literal=MY_SECRET=${{ steps.set-configmap-variables.outputs.my_secret}} \
+          --from-literal=QueueUrl=${{ steps.set-configmap-variables.outputs.queue_url}} \
+          --from-literal=SERVICES=${{ steps.set-configmap-variables.outputs.services}} \
+          --from-literal=LocalStack__UseLocalStack=${{ steps.set-configmap-variables.outputs.use_local_stack}} \
+          --from-literal=SQSConfig__UseLocalStack=${{ steps.set-configmap-variables.outputs.use_local_stack}} \
+          --from-literal=SQSConfig__CreateTestQueue=${{ steps.set-configmap-variables.outputs.create_test_queue}} \
+          --from-literal=SQSConfig__SendTestMessage=${{ steps.set-configmap-variables.outputs.send_test_message}} \
           --dry-run=client -o yaml | kubectl apply -f -
 
     - name: Deploy to EKS
