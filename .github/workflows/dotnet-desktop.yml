@@ -73,10 +73,6 @@ jobs:
         echo "::set-output name=db_user::${{ secrets.DB_USER }}"
         echo "::set-output name=services::${{ secrets.SERVICES }}"
         echo "::set-output name=queue_url::${{ secrets.QUEUE_URL }}"
-        echo "::set-output name=use_local_stack::${{ secrets.LOCALSTACK_ACTIVE }}"
-        echo "::set-output name=use_local_stack_sqs::${{ secrets.LOCALSTACK_ACTIVE }}"
-        echo "::set-output name=create_test_queue::${{ secrets.LOCALSTACK_ACTIVE }}"
-        echo "::set-output name=send_test_message::${{ secrets.LOCALSTACK_ACTIVE }}"
         echo "::set-output name=AWS_DEFAULT_REGION::${{ secrets.AWS_REGION }}"
         echo "::set-output name=db_password::${{ secrets.DB_PASSWORD }}"
         echo "::set-output name=mongo_initdb_database::${{ secrets.MONGO_INITDB_DATABASE }}"
@@ -116,11 +112,6 @@ jobs:
           --from-literal=MY_SECRET=${{ steps.set-configmap-variables.outputs.my_secret}} \
           --from-literal=QueueUrl=${{ steps.set-configmap-variables.outputs.queue_url}} \
           --dry-run=client -o yaml | kubectl apply -f -
-
-  #--from-literal=LocalStack__UseLocalStack=${{ steps.set-configmap-variables.outputs.use_local_stack }} \
-  #--from-literal=SQSConfig__UseLocalStack=${{ steps.set-configmap-variables.outputs.use_local_stack_sqs }} \
-  #--from-literal=SQSConfig__CreateTestQueue=${{ steps.set-configmap-variables.outputs.create_test_queue }} \
-  #--from-literal=SQSConfig__SendTestMessage=${{ steps.set-configmap-variables.outputs.send_test_message }} \
   
     - name: Deploy to EKS
       run:  |
